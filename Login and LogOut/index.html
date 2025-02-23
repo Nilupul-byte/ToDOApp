@@ -3,64 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
+    <title>Login System</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
-    <h1 id="greeting"></h1>
-    <nav>
-        <button id="login-btn">Log In</button>
-        <button id="profile-btn" class="hidden">Profile</button>
-    </nav>
-
-    <!-- Login Modal -->
+    <div id="greeting"></div>
+    <button id="login-btn">Log In</button>
+    <button id="profile-btn" class="hidden">Profile</button>
+    
+    <!-- Login Form Modal -->
     <div id="login-modal" class="modal">
         <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
             <h2>Log In</h2>
-            <input type="text" id="name" placeholder="Enter your name" required>
-            <input type="email" id="email" placeholder="Enter your email" required>
-            <input type="password" id="password" placeholder="Enter password (min 5 characters)" required>
-            <span id="login-error" class="error"></span>
-            <button onclick="validateLogin()">Log In</button>
-            <button onclick="closeModal('login-modal')">Cancel</button>
+            <input type="text" id="name" placeholder="Enter Name" required>
+            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <p id="login-error" class="error"></p>
+            <button onclick="validateLogin()">Submit</button>
         </div>
     </div>
-
+    
     <!-- Profile Modal -->
     <div id="profile-modal" class="modal">
         <div class="modal-content">
+            <span class="close" onclick="closeModal('profile-modal')">&times;</span>
             <h2>Profile</h2>
-            <input type="text" id="profile-name" placeholder="Update your name">
-            <input type="email" id="profile-email" placeholder="Update your email">
-            <span id="profile-error" class="error"></span>
+            <input type="text" id="profile-name" placeholder="Update Name">
+            <input type="email" id="profile-email" placeholder="Update Email">
+            <p id="profile-error" class="error"></p>
             <button onclick="updateProfile()">Save Changes</button>
             <button onclick="logout()">Log Out</button>
-            <button onclick="closeModal('profile-modal')">Close</button>
         </div>
     </div>
-
-    <!-- Task Manager -->
-    <div id="task-section" class="hidden">
-        <h2 id="task-title"></h2>
-        <p id="task-count"></p>
-        <button id="add-task-btn">Add Task</button>
-        <button id="completed-tasks-btn">View Completed Tasks</button>
-
-        <div id="task-list"></div>
-    </div>
-
-    <!-- Task Modal -->
-    <div id="task-modal" class="modal">
-        <div class="modal-content">
-            <h2>Add Task</h2>
-            <input type="text" id="task-name" placeholder="Task Name" required>
-            <input type="number" id="task-time" placeholder="Time in Minutes" required>
-            <input type="time" id="task-schedule" required>
-            <span id="task-error" class="error"></span>
-            <button onclick="addTask()">Add Task</button>
-            <button onclick="closeModal('task-modal')">Cancel</button>
-        </div>
-    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>

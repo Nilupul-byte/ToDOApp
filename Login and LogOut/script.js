@@ -2,10 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const loginBtn = document.getElementById("login-btn");
     const profileBtn = document.getElementById("profile-btn");
     const greeting = document.getElementById("greeting");
-    const taskSection = document.getElementById("task-section");
-    const taskTitle = document.getElementById("task-title");
-    const taskCount = document.getElementById("task-count");
-    const taskList = document.getElementById("task-list");
 
     function openModal(modal) {
         document.getElementById(modal).style.display = "flex";
@@ -17,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     loginBtn.addEventListener("click", () => openModal("login-modal"));
     profileBtn.addEventListener("click", () => openModal("profile-modal"));
-    document.getElementById("add-task-btn").addEventListener("click", () => openModal("task-modal"));
 
     function validateLogin() {
         const name = document.getElementById("name").value;
@@ -30,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
         if (password.length < 5) {
-            error.textContent = "Password should be at least 5 characters";
+            error.textContent = "Password should consist of at least 5 characters";
             return;
         }
 
@@ -43,15 +38,19 @@ document.addEventListener("DOMContentLoaded", function() {
         greeting.textContent = `Hey, ${name}`;
         loginBtn.classList.add("hidden");
         profileBtn.classList.remove("hidden");
-        taskSection.classList.remove("hidden");
-        updateTaskTitle();
     }
 
     function updateProfile() {
         const name = document.getElementById("profile-name").value;
         const email = document.getElementById("profile-email").value;
-        let user = JSON.parse(localStorage.getItem("user"));
+        const error = document.getElementById("profile-error");
 
+        if (email && (!email.includes("@") || !email.includes("."))) {
+            error.textContent = "Provide a valid email";
+            return;
+        }
+
+        let user = JSON.parse(localStorage.getItem("user"));
         if (name) user.name = name;
         if (email) user.email = email;
 
@@ -65,14 +64,6 @@ document.addEventListener("DOMContentLoaded", function() {
         greeting.textContent = "";
         loginBtn.classList.remove("hidden");
         profileBtn.classList.add("hidden");
-        taskSection.classList.add("hidden");
-    }
-
-    function updateTaskTitle() {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        taskTitle.textContent = `Hey ${user.name}, ready to plan the day?`;
-        taskCount.textContent = `You have ${tasks.length} planned tasks`;
     }
 
     const storedUser = JSON.parse(localStorage.getItem("user"));
