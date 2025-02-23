@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="greeting"></div>
+    <button id="login-btn">Log In</button>
+    <button id="profile-btn" class="hidden">Profile</button>
+    
+    <!-- Login Form Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <h2>Log In</h2>
+            <input type="text" id="name" placeholder="Enter Name" required>
+            <input type="email" id="email" placeholder="Enter Email" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <p id="login-error" class="error"></p>
+            <button onclick="validateLogin()">Submit</button>
+        </div>
+    </div>
+    
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('profile-modal')">&times;</span>
+            <h2>Profile</h2>
+            <input type="text" id="profile-name" placeholder="Update Name">
+            <input type="email" id="profile-email" placeholder="Update Email">
+            <p id="profile-error" class="error"></p>
+            <button onclick="updateProfile()">Save Changes</button>
+            <button onclick="logout()">Log Out</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
